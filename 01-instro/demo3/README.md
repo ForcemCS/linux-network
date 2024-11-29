@@ -37,7 +37,7 @@ source make_aliases.sh
 Here, we'll create a bridge.
 
 
-On h2 run tshark, and on h1 use onepkt.py to craft and send a packet.  With tshark, we included the vlan and vxlan fields in case you want to try creating some VLAN and VXLAN traffic
+在 h2 上运行 tshark，在 h1 上使用 onepkt.py 制作并发送数据包。使用 tshark 时，我们包含了 vlan 和 vxlan 字段，以备您尝试创建一些 VLAN 和 VXLAN 流量
 
 ```
 h2 tshark -T fields -e eth -e vlan -e vxlan -i eth1
