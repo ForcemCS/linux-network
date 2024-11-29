@@ -41,6 +41,7 @@ On h2 run tshark, and on h1 use onepkt.py to craft and send a packet.  With tsha
 
 ```
 h2 tshark -T fields -e eth -e vlan -e vxlan -i eth1
+#这将会通过 eth1 接口发送一个目标 MAC 为 22:11:11:11:11:11，源 MAC 为 22:22:22:22:22:225，包含 "123" 的 TCP 数据包。
 h1 python3 /lab-folder/onepkt.py 22:11:11:11:11:11 22:22:22:22:22:22 eth1 123
 ```
 
