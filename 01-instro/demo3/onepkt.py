@@ -1,5 +1,9 @@
 #! /usr/bin/env python3
 
+#该脚本的功能是从命令行获取源 MAC、目标 MAC、网络接口和消息，然后构造一个包含指定信息的以太网数据包，并通过指定的网络接口发送出去。 它可以用于测试网络连接，发送自定义数据包等。
+#./onepkt.py 00:11:22:33:44:55 aa:bb:cc:dd:ee:ff eth0 "My test message"
+#这将会通过 eth0 接口发送一个目标 MAC 为 aa:bb:cc:dd:ee:ff，源 MAC 为 00:11:22:33:44:55，包含 "My test message" 的 TCP 数据包。 IP 地址和端口号是脚本中预设的。
+
 import sys
 from scapy.all import *
 
