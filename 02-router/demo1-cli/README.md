@@ -120,7 +120,7 @@ Internet Control Message Protocol
 
 
 # will  have encapsulation
-lan1 tshark -O gre -i eth1
+
 root@docker:~/linux-network/02-router/demo1-cli# lan1 tshark -O gre -i eth1 
 Running as user "root" and group "root". This could be dangerous.
 Capturing on 'eth1'
