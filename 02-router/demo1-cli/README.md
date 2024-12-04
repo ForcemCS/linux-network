@@ -71,7 +71,7 @@ lan1 ping 10.0.3.2
 lan1 ping 10.0.3.3
 ```
 
-This will use a specific source IP address
+指定特定的源/目的
 
 ```
 lan1 ping -I 10.0.1.3 10.0.3.3
