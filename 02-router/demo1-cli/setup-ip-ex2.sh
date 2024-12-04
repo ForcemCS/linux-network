@@ -15,7 +15,7 @@ create_setup () {
 echo 'creating setup'
 
 $lan1 ip addr add 10.0.1.2 dev eth1
-# say router is directly connected
+# 直接链接路由器接口的IP地址
 $lan1 ip route add 10.0.1.1/32 dev eth1
 # then everything else has to go via that router
 $lan1 ip route add 10.0.0.0/16 dev eth1 via 10.0.1.1
