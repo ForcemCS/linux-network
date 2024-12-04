@@ -43,7 +43,7 @@ $lan1 ip addr add 10.0.1.2 dev eth1
 lan1 ping 10.0.3.2
 ```
 ```
-路由器的eth1不知道谁是10.0.3.2
+路由器的eth1不知道谁是10.0.3.2（需要路由器进行转发）
 root@docker:~/linux-network/02-router/demo1-cli# lan1 ping 10.0.3.2
 PING 10.0.3.2 (10.0.3.2) 56(84) bytes of data.
 From 10.0.1.2 icmp_seq=1 Destination Host Unreachable
