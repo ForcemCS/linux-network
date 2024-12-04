@@ -85,7 +85,17 @@ lan1 ping -I 10.0.1.3 10.0.3.3
 它创建了一个本地/远程指向 10.0.1.2/10.0.3.2 的 GRE 隧道（这是外层报头）
 
 然后给设备一个不同前缀的地址 192.168.0.1/192.168.0.2（这是内标头）
+```
+root@docker:~/linux-network/02-router/demo1-cli# lan1  route   
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.20.20.1     0.0.0.0         UG    0      0        0 eth0
+10.0.0.0        10.0.1.1        255.255.0.0     UG    0      0        0 eth1
+10.0.1.1        0.0.0.0         255.255.255.255 UH    0      0        0 eth1
+172.20.20.0     0.0.0.0         255.255.255.0   U     0      0        0 eth0
+192.168.0.0     0.0.0.0         255.255.255.252 U     0      0        0 gre1
 
+```
 
 设置完成后，就可以 ping 192.168 前缀了：
 
