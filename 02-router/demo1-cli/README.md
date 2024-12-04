@@ -106,11 +106,52 @@ lan1 ping 192.168.0.2
 You can run tshark
 
 ```
-# won't have encapsulation
-lan1 tshark -O gre -i gre1
+# 这条命令的作用是：监听名为 gre1 的网络接口，并解码和显示通过该接口的所有 GRE 流量。 你将看到 GRE 头部信息，例如源 IP 地址、目标 IP 地址、协议类型等，以及 GRE 载荷中的数据（取决于封装的协议）。
+root@docker:~/linux-network/02-router/demo1-cli# lan1 tshark -O gre -i gre1 
+Running as user "root" and group "root". This could be dangerous.
+Capturing on 'gre1'
+ ** (tshark:221) 23:44:11.456352 [Main MESSAGE] -- Capture started.
+ ** (tshark:221) 23:44:11.456460 [Main MESSAGE] -- File: "/tmp/wireshark_gre1LB3YX2.pcapng"
+/////////
+Frame 1: 100 bytes on wire (800 bits), 100 bytes captured (800 bits) on interface gre1, id 0
+Linux cooked capture v1
+Internet Protocol Version 4, Src: 192.168.0.1, Dst: 192.168.0.2
+Internet Control Message Protocol
+
 
 # will  have encapsulation
-lan1 tshark -O gre -i eth1 
+lan1 tshark -O gre -i eth1
+root@docker:~/linux-network/02-router/demo1-cli# lan1 tshark -O gre -i eth1 
+Running as user "root" and group "root". This could be dangerous.
+Capturing on 'eth1'
+ ** (tshark:195) 23:44:06.004348 [Main MESSAGE] -- Capture started.
+ ** (tshark:195) 23:44:06.004473 [Main MESSAGE] -- File: "/tmp/wireshark_eth144R8X2.pcapng"
+///////
+Frame 1: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface eth1, id 0
+Ethernet II, Src: aa:c1:ab:f2:37:28 (aa:c1:ab:f2:37:28), Dst: Broadcast (ff:ff:ff:ff:ff:ff)
+Address Resolution Protocol (request)
+
+Frame 2: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface eth1, id 0
+Ethernet II, Src: aa:c1:ab:2d:83:47 (aa:c1:ab:2d:83:47), Dst: aa:c1:ab:f2:37:28 (aa:c1:ab:f2:37:28)
+Address Resolution Protocol (reply)
+
+Frame 3: 122 bytes on wire (976 bits), 122 bytes captured (976 bits) on interface eth1, id 0
+Ethernet II, Src: aa:c1:ab:f2:37:28 (aa:c1:ab:f2:37:28), Dst: aa:c1:ab:2d:83:47 (aa:c1:ab:2d:83:47)
+Internet Protocol Version 4, Src: 10.0.1.2, Dst: 10.0.3.2
+Generic Routing Encapsulation (IP)
+    Flags and Version: 0x0000
+        0... .... .... .... = Checksum Bit: No
+        .0.. .... .... .... = Routing Bit: No
+        ..0. .... .... .... = Key Bit: No
+        ...0 .... .... .... = Sequence Number Bit: No
+        .... 0... .... .... = Strict Source Route Bit: No
+        .... .000 .... .... = Recursion control: 0
+        .... .... 0000 0... = Flags (Reserved): 0
+        .... .... .... .000 = Version: GRE (0)
+    Protocol Type: IP (0x0800)
+Internet Protocol Version 4, Src: 192.168.0.1, Dst: 192.168.0.2
+Internet Control Message Protocol
+
 
 # See encapsulation as it traverses the router
 rtr tshark -O gre -i eth1  
